@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using Library;
 
 namespace Cpr_to_euccid
@@ -32,9 +28,14 @@ namespace Cpr_to_euccid
         }
 
         //Return message is a Documenet message 147
-        private void ProcessRequestMessage(object sender, ReceiveCompletedEventArgs e)
+        private void ProcessRequestMessage(object sender, ReceiveCompletedEventArgs asyncResult)
         {
-            throw new NotImplementedException();
+            var messageQueue = (MessageQueue)sender;
+            var message = messageQueue.EndReceive(asyncResult.AsyncResult);
+            var envelope = (CommandMessage<string>)message.Body;
+            Console.WriteLine("Envelope");
+            Console.WriteLine(envelope.ReturnAdress);
+            Console.WriteLine(envelope.Body);
         }
 
         private void ProcessCreateMessage(object sender, ReceiveCompletedEventArgs asyncResult)

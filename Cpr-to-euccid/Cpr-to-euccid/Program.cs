@@ -43,6 +43,10 @@ namespace Cpr_to_euccid
 
             Service.GetAllEUcitizens().ForEach(Console.WriteLine);
             Console.ReadLine();
+
+            dk.RequestEUcitizen("2512872258-123442");
+            Thread.Sleep(600);
+
         }
     }
 }

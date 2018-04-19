@@ -10,7 +10,7 @@ namespace Cpr_to_euccid
         private static readonly List<string> ApartmentNos;
         private static readonly string QueuePath = @".\private$\";
         private static MessageQueue _deadletter;
-        private static List<EUcitizen> euCitizens;
+        private static List<EUcitizen> _euCitizens;
 
         static Service()
         {
@@ -22,7 +22,7 @@ namespace Cpr_to_euccid
             {
                 ApartmentNos.Add(i + ".");
             }
-            euCitizens = new List<EUcitizen>();
+            _euCitizens = new List<EUcitizen>();
         }
 
         public static List<string> GetApartmentNos()
@@ -48,13 +48,13 @@ namespace Cpr_to_euccid
         {
             Console.WriteLine("Registering new EU citizen");
             Console.WriteLine(euc);
-            euCitizens.Add(euc);
+            _euCitizens.Add(euc);
             Console.ReadLine();
         }
 
         public static List<EUcitizen> GetAllEUcitizens()
         {
-            return new List<EUcitizen>(euCitizens);
+            return new List<EUcitizen>(_euCitizens);
         }
     }
 }

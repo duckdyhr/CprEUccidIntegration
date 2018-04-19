@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Messaging;
 using System.Xml.Serialization;
 
 namespace Library
 {
     [Serializable()]
     [XmlRoot(elementName: "Envelope")]
-    abstract class Envelope<T>
+    public abstract class Envelope<T>
     {
+        protected Envelope() { }
         protected Envelope(T body)
         {
             Body = body;
         }
-        [XmlElement]
-        private T Body { get; }
+        [XmlElement] public T Body { get; }
     }
 
     [Serializable()]
+    [XmlRoot(elementName: "EnvelopeCommandMessage")]
     public class CommandMessage<T> : Envelope<T>
     {
-        [XmlElement]
-        private string ReturnAdress { get; }
+        [XmlElement] public string ReturnAdress { get; }
+        public CommandMessage() { }
         public CommandMessage(string returnAdress, T body) : base(body)
         {
             ReturnAdress = returnAdress;
